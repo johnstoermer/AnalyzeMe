@@ -103,7 +103,9 @@ class AnalyzeMe:
             dude_list.append(dude);
         return dude_list
     
-a = AnalyzeMe('57c859b00d2c01366e14698edaba82b3','24252629',1000)
+'''
+sample code to make a rank list
+a = AnalyzeMe(user stuff here)
 
 rank_list = []
 for dude in a.getDudeList():
@@ -115,3 +117,4 @@ rank_num = 1
 for dude in rank_list:
     print(str(rank_num) + '. ' + a.getName(dude[0]) + ': ' + str(dude[1]))
     rank_num += 1
+'''
