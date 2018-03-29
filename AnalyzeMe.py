@@ -116,8 +116,17 @@ class AnalyzeMe:
             dude_list.append(dude);
         return dude_list
     
-a = AnalyzeMe('57c859b00d2c01366e14698edaba82b3', '24252629', 100)
+    def pushMessagesToFile(self, dude_id):
+        with open('{}.dat'.format(dude_id), 'w') as file:
+            for message in self.dudes[dude_id]:
+                if self.dudes[dude_id][message]['text'] != None:
+                    file.write(self.getName(dude_id) + ': ' + self.dudes[dude_id][message]['text'] + '\n')
+    
+a = AnalyzeMe('57c859b00d2c01366e14698edaba82b3', '24252629', 1000)
 
+for dude_id in a.getDudeList():
+    a.pushMessagesToFile(dude_id)
+'''
 rank_list = []
 for dude in a.getDudeList():
     rank_list.append((dude, a.getKeywords(dude, 'the')))
@@ -136,3 +145,4 @@ for dude in a.getDudeList():
     for word in word_totals_sorted:
         if word_totals[word] > 3:
             print(word + ': ' + str(word_totals[word]))
+'''
