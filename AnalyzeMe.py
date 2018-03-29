@@ -94,6 +94,19 @@ class AnalyzeMe:
                             keywords += 1
         return keywords
 
+    def getWordTotals(self, dude_id, case_sensitive = False):
+        word_totals = {}
+        for message in self.dudes[dude_id]:
+            if self.dudes[dude_id][message]['text'] != None:
+                for text in self.dudes[dude_id][message]['text'].split():
+                    if not case_sensitive:
+                        text = text.lower()
+                    if text not in word_totals:
+                        word_totals[text] = 1
+                    else:
+                        word_totals[text] += 1
+        return word_totals
+    
     def getDudeDict(self):
         return self.dudes
     
@@ -102,11 +115,8 @@ class AnalyzeMe:
         for dude in self.dudes:
             dude_list.append(dude);
         return dude_list
-#test2
-
-'''
-sample code to make a rank list
-a = AnalyzeMe(user stuff here)
+    
+a = AnalyzeMe('57c859b00d2c01366e14698edaba82b3', '24252629', 100)
 
 rank_list = []
 for dude in a.getDudeList():
@@ -118,4 +128,11 @@ rank_num = 1
 for dude in rank_list:
     print(str(rank_num) + '. ' + a.getName(dude[0]) + ': ' + str(dude[1]))
     rank_num += 1
-'''
+
+for dude in a.getDudeList():
+    word_totals = a.getWordTotals(dude)
+    word_totals_sorted = sorted(word_totals, key = word_totals.__getitem__, reverse = True)
+    print(a.getName(dude))
+    for word in word_totals_sorted:
+        if word_totals[word] > 3:
+            print(word + ': ' + str(word_totals[word]))
