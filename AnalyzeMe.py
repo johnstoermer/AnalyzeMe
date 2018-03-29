@@ -102,7 +102,8 @@ class AnalyzeMe:
         for dude in self.dudes:
             dude_list.append(dude);
         return dude_list
-    
+#test
+
 '''
 sample code to make a rank list
 a = AnalyzeMe(user stuff here)
