@@ -30,16 +30,18 @@ class AnalyzeMe:
         
     def _generateDict(self, max_messages):
         message_count = 0
-        for message in self.group.messages.list_all():
-            if message.user_id not in self.dudes:
-                self.dudes[message.user_id] = {}
-            self.dudes[message.user_id][message.id] = {'likes':message.favorited_by,'text':message.text}
-            message_count += 1
-            printProgressBar(message_count, max_messages, prefix = 'Loading Messages:', length = 50)
-            if message_count == max_messages:
-                print('Finished Loading ' + str(max_messages) + ' messages')
-                return
-        print('Stopped early, there are only ' + str(message_count) + ' messages in this group chat')
+        with open('groupchatmessages.txt'.format(dude_id), 'w') as file:
+            for message in self.group.messages.list_all():
+                if message.user_id not in self.dudes:
+                    self.dudes[message.user_id] = {}
+                self.dudes[message.user_id][message.id] = {'likes':message.favorited_by,'text':message.text}
+                file.write(self.getName(message.user_id) + ': ' + message.text + '\n')
+                message_count += 1
+                printProgressBar(message_count, max_messages, prefix = 'Loading Messages:', length = 50)
+                if message_count == max_messages:
+                    print('Finished Loading ' + str(max_messages) + ' messages')
+                    return
+            print('Stopped early, there are only ' + str(message_count) + ' messages in this group chat')
             
     def getID(self, dude_name):
         for member in self.group.members:
@@ -122,7 +124,7 @@ class AnalyzeMe:
                 if self.dudes[dude_id][message]['text'] != None:
                     file.write(self.getName(dude_id) + ': ' + self.dudes[dude_id][message]['text'] + '\n')
     
-a = AnalyzeMe('57c859b00d2c01366e14698edaba82b3', '24252629', 1000)
+a = AnalyzeMe('57c859b00d2c01366e14698edaba82b3', '24252629', 1000000)
 
 for dude_id in a.getDudeList():
     a.pushMessagesToFile(dude_id)
