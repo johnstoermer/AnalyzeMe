@@ -30,7 +30,7 @@ class AnalyzeMe:
         
     def _generateDict(self, max_messages):
         message_count = 0
-        with open('groupchatmessages.txt'.format(dude_id), 'w') as file:
+        with open('groupchatmessages.txt', 'w') as file:
             for message in self.group.messages.list_all():
                 if message.user_id not in self.dudes:
                     self.dudes[message.user_id] = {}
