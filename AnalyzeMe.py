@@ -35,7 +35,8 @@ class AnalyzeMe:
                 if message.user_id not in self.dudes:
                     self.dudes[message.user_id] = {}
                 self.dudes[message.user_id][message.id] = {'likes':message.favorited_by,'text':message.text}
-                file.write(self.getName(message.user_id) + ': ' + message.text + '\n')
+                if message.text != None:
+                    file.write(self.getName(message.user_id) + ': ' + message.text + '\n')
                 message_count += 1
                 printProgressBar(message_count, max_messages, prefix = 'Loading Messages:', length = 50)
                 if message_count == max_messages:
@@ -119,7 +120,7 @@ class AnalyzeMe:
         return dude_list
     
     def pushMessagesToFile(self, dude_id):
-        with open('{}.dat'.format(dude_id), 'w') as file:
+        with open('{}.txt'.format(dude_id), 'w') as file:
             for message in self.dudes[dude_id]:
                 if self.dudes[dude_id][message]['text'] != None:
                     file.write(self.getName(dude_id) + ': ' + self.dudes[dude_id][message]['text'] + '\n')
