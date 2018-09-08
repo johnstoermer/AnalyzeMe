@@ -125,7 +125,7 @@ class AnalyzeMe:
                 if self.dudes[dude_id][message]['text'] != None:
                     file.write(self.getName(dude_id) + ': ' + self.dudes[dude_id][message]['text'] + '\n')
     
-a = AnalyzeMe('57c859b00d2c01366e14698edaba82b3', '24252629', 1000000)
+a = AnalyzeMe('TOKEN', '24252629', 1000000)
 
 for dude_id in a.getDudeList():
     a.pushMessagesToFile(dude_id)
