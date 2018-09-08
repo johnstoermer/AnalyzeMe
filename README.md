@@ -14,7 +14,7 @@ Next, find the group message id you intend to look at with printGroupIDs():
 ```python
 my_group.printGroupIDs()
 ```
-Output (group name: group id):
+Example Output (group name: group id):
 ```
 Madden 2007: 12345678
 Pokemon Go: 12345678
@@ -29,7 +29,7 @@ Once you have loaded a group, you can check the user ids of members in the group
 ```python
 my_group.printUserIDs()
 ```
-Output (user name: user id):
+Example Output (user name: user id):
 ```
 Clay Jensen: 12345678
 Upgraded Mac: 12345678
