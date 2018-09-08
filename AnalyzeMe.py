@@ -12,8 +12,15 @@ class AnalyzeMe:
         for group in self.groups['response']:
             print(group['name'] + ': ' + group['id'])
 
+    def printUserIDs(self):
+        for user in self.users:
+            print(user[1] + ': ' + user[0])
+
     def _getUsers(self):
-        users = requests.get('https://api.groupme.com/v3/groups/{}?token={}'.format(self.id, self.token)).json()
+        users = []
+        group = requests.get('https://api.groupme.com/v3/groups/{}?token={}'.format(self.id, self.token)).json()
+        for user in group['response']['members']:
+            users.append((user['user_id'], user['nickname']))
         return users
 
     def _getMessages(self, limit=100, start=datetime.today(), end=datetime.today()-timedelta(days=1)):
@@ -51,8 +58,9 @@ class AnalyzeMe:
                 break
         return messages
 
-    def getGroup(self, id):
+    def loadGroup(self, id):
         self.id = id
+        self.users = self._getUsers()
         self.messages = self._getMessages()
 
     def toCSV(self):
@@ -61,7 +69,5 @@ class AnalyzeMe:
             df = df.T
             df.to_csv('messages\\{}'.format(person))
 
-am = AnalyzeMe('57c859b00d2c01366e14698edaba82b3')
-am.printGroupIDs()
-am.getGroup('24252629')
-am.toCSV()
+    def getDF(self, user_id):
+        return pd.DataFrame(self.messages[user_id]).T
