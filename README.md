@@ -1,6 +1,7 @@
 # AnalyzeMe
 AnalyzeMe is a data analysis tool for GroupMe group messages. Currently, it allows you to get user messages as a DataFrame from pandas or export them to CSV files.
-
+## Requirements:
+The only requirements are requests for accessing the API and pandas for DataFrames
 ## Usage:
 Import AnalyzeMe with:
 ```python
