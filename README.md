@@ -22,7 +22,7 @@ Pokemon Go: 12345678
 Survived The First Semester: 12345678
 Top Secret: 12345678
 ```
-To start looking at a specific group use the function getGroup():
+To start looking at a specific group use the function loadGroup():
 ```python
 my_group.loadGroup('GROUP_ID')
 ```
