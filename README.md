@@ -46,3 +46,5 @@ Alternatively, you can export all users and their messages to files using toCSV(
 ```python
 my_group.toCSV()
 ```
+# Current Work:
+I intend to use this library to evaluate the "like" and how it applies to messages in the areas of comedy, frendship bias, and popularity ranking of users. This will be done with the powerful natural language processing library [NLTK](https://www.nltk.org/)
