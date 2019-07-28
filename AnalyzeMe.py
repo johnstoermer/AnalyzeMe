@@ -210,3 +210,6 @@ class AnalyzeMe:
                 else:
                     friendship_bias[user[1][0]][liker[1][0]] = friendship_bias[user[1][0]][liker[1][0]] / add_total[liker[1][0]]
         return friendship_bias
+
+    def get_active_conversation(self, message):
+        return messages
